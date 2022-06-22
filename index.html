@@ -14,13 +14,13 @@
 
 <body>
   <div class="container">
-    <form action="submit" class="form">
+    <form class="form" id="form">
       <label for="" class="form_name">Họ & tên</label>
-      <input placeholder="Nhập họ và tên" type="text" name="" id="" class="form_name-input" />
+      <input placeholder="Nhập họ và tên" type="text" name="" id="fullname" class="form_name-input" />
       <div class="birthday-gender">
         <div class="birthday">
           <label for="" class="birthday-label">Năm sinh</label>
-          <select name="" id="">
+          <select name="year" id="year">
             <option value="1990">1990</option>
             <option value="1990">1990</option>
           </select>
@@ -29,21 +29,21 @@
           <span>Giới tính</span>
           <div class="radio-wrapper">
             <div class="radio-item">
-              <input type="radio" name="gender" id="male" />
+              <input type="radio" name="gender" value="male" checked />
               <label for="male">Nam</label>
             </div>
             <div class="radio-item">
-              <input type="radio" name="gender" id="female" />
+              <input type="radio" name="gender" value="female" />
               <label for="female">Nữ</label>
             </div>
             <div class="radio-item">
-              <input type="radio" name="gender" id="orther" />
+              <input type="radio" name="gender" value="orther" />
               <label for="orther">Khác</label>
             </div>
           </div>
         </div>
       </div>
-      <button type="submit">Nhập</button>
+      <button>Nhập</button>
     </form>
     <div class="list">
       <h1 class="list_header">Danh sách đã nhập</h1>
@@ -78,33 +78,18 @@
         </div>
       </div>
       <table>
-        <tr>
-          <th>#</th>
-          <th>Họ & Tên</th>
-          <th>Năm sinh</th>
-          <th>Giới tisnh</th>
-          <th>Thời gian tạo</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Le trung tan</td>
-          <td>1994</td>
-          <td>nam</td>
-          <td>12:00pm 22/06/2022</td>
-          <td class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></td>
-
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Le trung tan</td>
-          <td>1994</td>
-          <td>nam</td>
-          <td>12:02pm 22/06/2022</td>
-          <td class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></td>
-
-        </tr>
-
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Họ & Tên</th>
+            <th>Năm sinh</th>
+            <th>Giới tính</th>
+            <th>Thời gian tạo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
       </table>
     </div>
   </div>
