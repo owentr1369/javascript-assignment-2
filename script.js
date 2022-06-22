@@ -5,6 +5,17 @@ const tableBody = document.querySelector("tbody");
 const usersData = JSON.parse(localStorage.getItem("usersData")) || [];
 let data = JSON.parse(localStorage.getItem("usersData"));
 
+// init year of birth
+function yearOption(startYear, endYear) {
+  const years = [];
+  for (let i = startYear; i <= endYear; i++) {
+    years.push(`<option value=${i}>${i}</option>`);
+  }
+
+  yearOfBirth.innerHTML = years.join("");
+}
+yearOption(1990, 2022);
+
 // Object contrucstor for User
 function userInfo(fullname, yearOfBirth, gender, time) {
   (this.fullName = fullname),
@@ -19,12 +30,14 @@ form.addEventListener("submit", (e) => {
 
   let gender = document.querySelector('input[name="gender"]:checked');
 
-  let registeredTime = getTime();
+  // Get Registration Time
+  let registrationTime = getTime();
+
   let newUser = new userInfo(
     fullName.value,
     yearOfBirth.value,
     gender.value,
-    registeredTime
+    registrationTime
   );
   usersData.push(newUser);
   localStorage.setItem("usersData", JSON.stringify(usersData));
