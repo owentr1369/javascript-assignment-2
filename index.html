@@ -48,42 +48,39 @@
       <div class="list_option">
         <div class="list_option-filter">
           <h1>Lọc:</h1>
-          <select name="year-filter" id="year-filter">
-            <option selected hidden>Năm sinh</option>
-            <option value="1990">1990</option>
-            <option value="1991">1991</option>
-            </optgroup>
+          <select name="year-filter" id="yearFilter">
           </select>
-          <select name="gender-filter" id="gender-filter">
+          <select name="gender-filter" id="genderFilter">
             <option value="" selected hidden>Giới tính</option>
-            <option value="male">Nam</option>
-            <option value="female">Nữ</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
           </select>
         </div>
         <div class="list_option-sort">
           <h1>Sắp xếp:</h1>
-          <select name="name-sort" id="name-sort">
+          <select name="name-sort" id="nameSort">
             <option selected hidden>Họ & tên</option>
-            <option value="1990">A->Z</option>
-            <option value="1991">Z->A</option>
+            <option value="atoz">A->Z</option>
+            <option value="ztoa">Z->A</option>
             </optgroup>
           </select>
-          <select name="time-sort" id="time-sort">
+          <select name="time-sort" id="timeSort">
             <option value="" selected hidden>Tăng</option>
-            <option value="male">Mới nhất</option>
-            <option value="female">Cũ nhất</option>
+            <option value="new">Mới nhất</option>
+            <option value="old">Cũ nhất</option>
           </select>
         </div>
       </div>
-      <table>
+      <table id="listTable">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Họ & Tên</th>
-            <th>Năm sinh</th>
-            <th>Giới tính</th>
-            <th>Thời gian tạo</th>
-            <th></th>
+            <th class="header">#</th>
+            <th class="header">Họ & Tên</th>
+            <th class="header">Năm sinh</th>
+            <th class="header">Giới tính</th>
+            <th class="header">Thời gian tạo</th>
+            <th class="header"></th>
           </tr>
         </thead>
         <tbody>

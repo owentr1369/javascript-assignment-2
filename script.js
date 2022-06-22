@@ -1,4 +1,5 @@
 const form = document.getElementById("form");
+
 const fullName = document.getElementById("fullname");
 const yearOfBirth = document.getElementById("year");
 const tableBody = document.querySelector("tbody");
@@ -42,32 +43,28 @@ form.addEventListener("submit", (e) => {
   usersData.push(newUser);
   localStorage.setItem("usersData", JSON.stringify(usersData));
   let data = JSON.parse(localStorage.getItem("usersData"));
-
-  console.log(data);
-
   renderItem(usersData, 1);
 });
 
 // Get time
 function getTime() {
   let time = new Date();
+  let yyyy = time.getFullYear();
+  let mm = time.getMonth() + 1; // Months start at 0!
+  let dd = time.getDate();
   var hours = time.getHours();
   var minutes = time.getMinutes();
   var ampm = hours >= 12 ? "PM" : "AM";
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? "0" + minutes : minutes;
-  console.log(hours + ":" + minutes + " " + ampm);
-  let yyyy = time.getFullYear();
-  let mm = time.getMonth() + 1; // Months start at 0!
-  let dd = time.getDate();
   if (dd < 10) dd = "0" + dd;
   if (mm < 10) mm = "0" + mm;
   time = dd + "/" + mm + "/" + yyyy;
   return hours + ":" + minutes + " " + ampm + "  " + time;
 }
 
-// Render items form LocalStorage
+// Render items from LocalStorage
 function renderItem(users) {
   const htmls = users.map((user, index) => {
     return `
@@ -84,7 +81,57 @@ function renderItem(users) {
   tableBody.innerHTML = htmls.join("");
 }
 
+// Render yearFilter option
+const yearFilter = document.getElementById("yearFilter");
+
+const getYears = [];
+let uniq;
+for (let i = 0; i < data.length; i++) {
+  getYears.push(data[i].yearOfBirth);
+  uniq = [...new Set(getYears)].sort(); // Sort year from smallest to largest
+}
+
+function renderYearOption(uniq) {
+  const years = [` <option selected hidden>Năm sinh</option>`];
+  for (let i = 0; i < uniq.length; i++) {
+    years.push(`<option value=${uniq[i]}>${uniq[i]}</option>`);
+  }
+  yearFilter.innerHTML = years.join("");
+}
+renderYearOption(uniq);
+
 // Render when reload
 if (data) {
   renderItem(data);
 }
+
+// Table
+const table = document.getElementById("listTable");
+const tRows = document.querySelectorAll("#listTable tr:not(.header)");
+
+//Filters
+// YOB filter
+yearFilter.addEventListener("change", () => {
+  let newData = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].yearOfBirth == yearFilter.value) {
+      newData.push(data[i]);
+    }
+  }
+  renderItem(newData);
+});
+// gender filter
+const genderFilter = document.getElementById("genderFilter");
+console.log(genderFilter);
+genderFilter.addEventListener("change", () => {
+  let newData = [];
+  for (let i = 0; i < data.length; i++) {
+    console.log(genderFilter.value);
+    if (data[i].gender == genderFilter.value) {
+      newData.push(data[i]);
+    }
+  }
+  renderItem(newData);
+});
+
+//Sorts
