@@ -15,67 +15,75 @@
 <body>
   <div class="container">
     <form action="submit" class="form">
-      <label for="" class="form_name">Ho va ten</label>
-      <input type="text" name="" id="" class="form_name-input" />
+      <label for="" class="form_name">Họ & tên</label>
+      <input placeholder="Nhập họ và tên" type="text" name="" id="" class="form_name-input" />
       <div class="birthday-gender">
         <div class="birthday">
-          <label for="" class="birthday-label">Nam sinh</label>
+          <label for="" class="birthday-label">Năm sinh</label>
           <select name="" id="">
             <option value="1990">1990</option>
             <option value="1990">1990</option>
           </select>
         </div>
         <div class="gender">
-          <span>Gioi tinh</span>
-          <input type="radio" name="gender" id="male" />
-          <label for="male">Nam</label>
-          <input type="radio" name="gender" id="female" />
-          <label for="female">Nu</label>
-          <input type="radio" name="gender" id="orther" />
-          <label for="orther">Khac</label>
+          <span>Giới tính</span>
+          <div class="radio-wrapper">
+            <div class="radio-item">
+              <input type="radio" name="gender" id="male" />
+              <label for="male">Nam</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="gender" id="female" />
+              <label for="female">Nữ</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="gender" id="orther" />
+              <label for="orther">Khác</label>
+            </div>
+          </div>
         </div>
       </div>
-      <button type="submit">Nhap</button>
+      <button  type="submit">Nhập</button>
     </form>
     <div class="list">
-      <h1 class="list_header">Danh sach da nhap</h1>
+      <h1 class="list_header">Danh sách đã nhập</h1>
       <div class="list_option">
         <div class="list_option-filter">
-          <h1>Loc</h1>
+          <h1>Lọc:</h1>
           <select name="year-filter" id="year-filter">
-            <option selected hidden>What is your name?</option>
+            <option selected hidden>Năm sinh</option>
             <option value="1990">1990</option>
             <option value="1991">1991</option>
             </optgroup>
           </select>
           <select name="gender-filter" id="gender-filter">
-            <option value="" selected hidden>Gioi tinh</option>
+            <option value="" selected hidden>Giới tính</option>
             <option value="male">Nam</option>
-            <option value="female">Nu</option>
+            <option value="female">Nữ</option>
           </select>
         </div>
         <div class="list_option-sort">
-          <h1>Loc</h1>
+          <h1>Sắp xếp:</h1>
           <select name="name-sort" id="name-sort">
-            <option selected hidden>Ho & Ten</option>
+            <option selected hidden>Họ & tên</option>
             <option value="1990">A->Z</option>
             <option value="1991">Z->A</option>
             </optgroup>
           </select>
           <select name="time-sort" id="time-sort">
-            <option value="" selected hidden>Tang</option>
-            <option value="male">Moi nhat</option>
-            <option value="female">Cu nhat</option>
+            <option value="" selected hidden>Tăng</option>
+            <option value="male">Mới nhất</option>
+            <option value="female">Cũ nhất</option>
           </select>
         </div>
       </div>
       <table>
         <tr>
           <th>#</th>
-          <th>Ho & Ten</th>
-          <th>Nam sinh</th>
-          <th>Gioi tinh</th>
-          <th>Thoi gian tao</th>
+          <th>Họ & Tên</th>
+          <th>Năm sinh</th>
+          <th>Giới tisnh</th>
+          <th>Thời gian tạo</th>
         </tr>
         <tr>
           <td>1</td>
