@@ -134,3 +134,13 @@ th {
 td:first-child {
   font-weight: 600;
 }
+td:last-child {
+  width: 32px;
+}
+.delete i {
+  cursor: pointer;
+  visibility: hidden;
+}
+tr:nth-child(2):hover .delete i {
+  visibility: visible;
+}
