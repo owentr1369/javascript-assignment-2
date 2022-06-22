@@ -111,27 +111,82 @@ const tRows = document.querySelectorAll("#listTable tr:not(.header)");
 
 //Filters
 // YOB filter
+const genderFilter = document.getElementById("genderFilter");
+let initialData = [];
+let year_of_birth = "";
+let _gender = "";
+
+genderFilter.addEventListener("change", () => {
+  const gender_filter = data
+    .map((item) => {
+      if (
+        item.gender === genderFilter.value &&
+        item.yearOfBirth === year_of_birth
+      ) {
+        return item;
+      } else {
+        return undefined;
+      }
+    })
+    .filter(Boolean);
+  _gender = genderFilter.value;
+  renderItem(gender_filter);
+});
 yearFilter.addEventListener("change", () => {
-  let newData = [];
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].yearOfBirth == yearFilter.value) {
-      newData.push(data[i]);
-    }
-  }
+  const newData = data
+    .map((item) => {
+      if (!!_gender.length) {
+        if (item.yearOfBirth === yearFilter.value && item.gender === _gender) {
+          return item;
+        }
+      } else {
+        if (item.yearOfBirth === yearFilter.value) {
+          return item;
+        }
+      }
+    })
+    .filter(Boolean);
+  // inititalData = newData;
+  year_of_birth = yearFilter.value;
   renderItem(newData);
 });
+
 // gender filter
-const genderFilter = document.getElementById("genderFilter");
-console.log(genderFilter);
-genderFilter.addEventListener("change", () => {
-  let newData = [];
-  for (let i = 0; i < data.length; i++) {
-    console.log(genderFilter.value);
-    if (data[i].gender == genderFilter.value) {
-      newData.push(data[i]);
-    }
+// const genderFilter = document.getElementById("genderFilter");
+// genderFilter.addEventListener("change", () => {
+//   const gender_filter = inititalData
+//     .map((item) => {
+//       if (item.gender === genderFilter.value) {
+//         return item;
+//       } else {
+//         return null;
+//       }
+//     })
+//     .filter(Boolean);
+//   inititalData = gender_filter;
+//   renderItem(gender_filter);
+// });
+// console.log("inititalData: ", inititalData);
+
+//Sorts
+const nameSort = document.getElementById("nameSort");
+
+nameSort.addEventListener("change", () => {
+  console.log("nameSort.value :>> ", nameSort.value);
+  if (nameSort.value == "atoz") {
+    newData = data.sort(compare);
+  } else if (nameSort.value == "ztoa") {
+    newData = data.sort(compare).reverse();
   }
   renderItem(newData);
 });
 
-//Sorts
+function compare(a, b) {
+  if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {
+    return -1;
+  }
+  if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {
+    return 1;
+  }
+  return 0;
+}
