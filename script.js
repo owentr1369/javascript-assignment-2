@@ -147,7 +147,6 @@ yearFilter.addEventListener("change", () => {
       }
     })
     .filter(Boolean);
-  // inititalData = newData;
   year_of_birth = yearFilter.value;
   renderItem(newData);
 });
@@ -176,6 +175,7 @@ function compareName(a, b) {
   return 0;
 }
 
+// Sort by time
 timeSort.addEventListener("change", () => {
   let newTimeData = [];
   if (timeSort.value == "new") {
@@ -192,7 +192,7 @@ function sortTimeData({ time: a }, { time: b }) {
   getNumber(a) - getNumber(b);
 }
 
-// Delete
+// Delete item
 const deleteBtn = document.querySelectorAll(".delete");
 
 deleteBtn.forEach(function (button, index) {
