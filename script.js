@@ -9,7 +9,7 @@ let data = JSON.parse(localStorage.getItem("usersData"));
 // init year of birth
 function yearOption(startYear, endYear) {
   const years = [];
-  for (let i = startYear; i <= endYear; i++) {
+  for (let i = endYear; i >= startYear; i--) {
     years.push(`<option value=${i}>${i}</option>`);
   }
 
@@ -74,7 +74,7 @@ function renderItem(users) {
             <td>${user.yearOfBirth}</td>
             <td>${user.gender}</td>
             <td>${user.time}</td>
-            <td class="delete" id="delete" class="delete"><i class="fa-solid fa-trash-can"></i></td>
+            <td class="delete"><i class="fa-solid fa-trash-can"></i></td>
       </tr>
     `;
   });
@@ -192,11 +192,9 @@ const deleteBtn = document.querySelectorAll(".delete");
 
 deleteBtn.forEach(function (button, index) {
   button.addEventListener("click", function (e) {
-    console.log("index :>> ", index);
     if (index > -1) {
       data.splice(index, 1); // 2nd parameter means remove one item only
     }
-    // array = [2, 9]
     localStorage.setItem("usersData", JSON.stringify(data));
     renderItem(data);
   });

@@ -142,6 +142,6 @@ td:last-child {
   cursor: pointer;
   visibility: hidden;
 }
-tr:nth-child(2):hover .delete i {
+tbody > tr:hover .delete i {
   visibility: visible;
 }
