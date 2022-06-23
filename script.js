@@ -4,6 +4,7 @@ const fullName = document.getElementById("fullname");
 const yearOfBirth = document.getElementById("year");
 const tableBody = document.querySelector("tbody");
 const usersData = JSON.parse(localStorage.getItem("usersData")) || [];
+
 let data = JSON.parse(localStorage.getItem("usersData"));
 
 // init year of birth
@@ -85,10 +86,12 @@ function renderItem(users) {
 const yearFilter = document.getElementById("yearFilter");
 
 const getYears = [];
+
 let uniq;
+
 for (let i = 0; i < data.length; i++) {
   getYears.push(data[i].yearOfBirth);
-  uniq = [...new Set(getYears)].sort(); // Sort year from smallest to largest
+  uniq = [...new Set(getYears)].sort(); // Sort year from smallest to largest and remove duplicates year
 }
 
 function renderYearOption(uniq) {
@@ -106,12 +109,12 @@ if (data) {
 }
 
 //Filters
-// YOB filter
 const genderFilter = document.getElementById("genderFilter");
 let initialData = [];
 let year_of_birth = "";
 let _gender = "";
 
+// Gender filter
 genderFilter.addEventListener("change", () => {
   const gender_filter = data
     .map((item) => {
@@ -128,6 +131,8 @@ genderFilter.addEventListener("change", () => {
   _gender = genderFilter.value;
   renderItem(gender_filter);
 });
+
+// Year filter
 yearFilter.addEventListener("change", () => {
   const newData = data
     .map((item) => {
@@ -191,11 +196,13 @@ function sortTimeData({ time: a }, { time: b }) {
 const deleteBtn = document.querySelectorAll(".delete");
 
 deleteBtn.forEach(function (button, index) {
-  button.addEventListener("click", function (e) {
+  button.addEventListener("click", function () {
     if (index > -1) {
-      data.splice(index, 1); // 2nd parameter means remove one item only
+      data.splice(index, 1);
     }
     localStorage.setItem("usersData", JSON.stringify(data));
     renderItem(data);
+    location.reload();
+    alert("Xoá thành công");
   });
 });

@@ -9,6 +9,10 @@ body {
   min-height: 100vh;
   color: #666;
 }
+select {
+  color: #666;
+  border-radius: 6px;
+}
 .container {
   width: 100%;
   display: flex;
@@ -70,14 +74,16 @@ input {
 }
 button {
   background-color: #3a6bf9;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 6px;
-  outline: none;
+  padding: 8px 16px;
+  margin-bottom: 48px;
   border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
   cursor: pointer;
-  padding: 6px 8px;
 }
 .list {
   width: 60%;
