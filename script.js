@@ -74,7 +74,7 @@ function renderItem(users) {
             <td>${user.yearOfBirth}</td>
             <td>${user.gender}</td>
             <td>${user.time}</td>
-            <td class="delete" id="delete"><i class="fa-solid fa-trash-can"></i></td>
+            <td class="delete" id="delete" class="delete"><i class="fa-solid fa-trash-can"></i></td>
       </tr>
     `;
   });
@@ -186,3 +186,18 @@ function sortTimeData({ time: a }, { time: b }) {
   const getNumber = (t) => +t.replace(/:/g, "");
   getNumber(a) - getNumber(b);
 }
+
+// Delete
+const deleteBtn = document.querySelectorAll(".delete");
+
+deleteBtn.forEach(function (button, index) {
+  button.addEventListener("click", function (e) {
+    console.log("index :>> ", index);
+    if (index > -1) {
+      data.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    // array = [2, 9]
+    localStorage.setItem("usersData", JSON.stringify(data));
+    renderItem(data);
+  });
+});
