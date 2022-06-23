@@ -105,10 +105,6 @@ if (data) {
   renderItem(data);
 }
 
-// Table
-const table = document.getElementById("listTable");
-const tRows = document.querySelectorAll("#listTable tr:not(.header)");
-
 //Filters
 // YOB filter
 const genderFilter = document.getElementById("genderFilter");
@@ -151,37 +147,21 @@ yearFilter.addEventListener("change", () => {
   renderItem(newData);
 });
 
-// gender filter
-// const genderFilter = document.getElementById("genderFilter");
-// genderFilter.addEventListener("change", () => {
-//   const gender_filter = inititalData
-//     .map((item) => {
-//       if (item.gender === genderFilter.value) {
-//         return item;
-//       } else {
-//         return null;
-//       }
-//     })
-//     .filter(Boolean);
-//   inititalData = gender_filter;
-//   renderItem(gender_filter);
-// });
-// console.log("inititalData: ", inititalData);
-
 //Sorts
 const nameSort = document.getElementById("nameSort");
+const timeSort = document.getElementById("timeSort");
 
 nameSort.addEventListener("change", () => {
   console.log("nameSort.value :>> ", nameSort.value);
   if (nameSort.value == "atoz") {
-    newData = data.sort(compare);
+    newData = data.sort(compareName);
   } else if (nameSort.value == "ztoa") {
-    newData = data.sort(compare).reverse();
+    newData = data.sort(compareName).reverse();
   }
   renderItem(newData);
 });
 
-function compare(a, b) {
+function compareName(a, b) {
   if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {
     return -1;
   }
@@ -189,4 +169,20 @@ function compare(a, b) {
     return 1;
   }
   return 0;
+}
+
+timeSort.addEventListener("change", () => {
+  let newTimeData = [];
+  if (timeSort.value == "new") {
+    newTimeData = data.sort(sortTimeData).reverse();
+  } else if (timeSort.value == "old") {
+    newTimeData = data.sort(sortTimeData);
+  }
+  renderItem(newTimeData);
+});
+
+// Compare time to get newTimeData
+function sortTimeData({ time: a }, { time: b }) {
+  const getNumber = (t) => +t.replace(/:/g, "");
+  getNumber(a) - getNumber(b);
 }
